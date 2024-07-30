@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Gatitos</title>
+        <style>
+            body {
+                margin: 0;
+                font-family: 'Quicksand', sans-serif;
+                background-color:  rgb(246, 243, 235);
+            }
+            .container{
+                display: grid;
+                place-items: center;
+                
+            }
+            .title-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                background-color:#de856c;
+            }
+            .image-container {
+                position: relative;
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+
+
+            }
+            article {
+                position: relative;
+                display: inline-block;
+                margin: 10px;
+            }
+            .image {
+                display: block;
+                border-radius: 8px;
+                width: 300px;
+                height: 300px;
+                object-fit: cover;
+                
+            }
+            .favorite-button {
+                position: absolute;
+                bottom: 5px;
+                right: 5px;
+                font-size: 30px;
+                background-color: rgba(223, 133, 73, 0.51);
+                border-color: #de856c;
+                border-radius: 10px;
+                cursor: pointer;
+             
+            }
+            h1 {
+                font-size: 80px;
+                margin-right: 30px;
+                font-weight: bold;
+                color: rgb(249, 244, 229);
+                
+            }
+            .icon {
+                height: 100px;
+            }
+            .reload-image {
+                height: 100px;
+                width: 700px;
+                margin: 50px;
+                background-color: #de856c;
+                color: rgb(246, 243, 235);
+                border-color: rgb(246, 243, 235);
+                font-size: 40px;
+                font-weight: 900;
+                border-radius: 8px;
+            }
+        </style>
+    </head>
+    <body>
+        
+        <section class="container">
+            <div class="title-container">
+                <h1>Random Cats</h1>
+                <img src="https://static.vecteezy.com/system/resources/thumbnails/009/384/190/small_2x/cat-paw-clipart-design-illustration-free-png.png" alt="icon" class="icon">
+            </div>
+            <span id="michiError"></span>
+            <div class="image-container" id="image-container">
+                
+            </div>
+            <button id="reloadImage" class="reload-image">New Cats</button>
+
+            <div class="title-container">
+                <h1>Favorite Cats 🤍</h1>
+            </div>
+            <span id="michiErrorFavorite"></span>
+            <div class="favorite-image-container" id="favorite-image-container">
+                
+            </div>
+        </section>
+            
+        <script src="./main.js"></script>
+    </body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Gatitos</title>
+        <style>
+            body {
+                margin: 0;
+                font-family: 'Quicksand', sans-serif;
+                background-color:  #de856c;
+            }
+            .container{
+                display: grid;
+                place-items: center;
+                
+            }
+            .title-container {
+                display: flex;
+                align-items: center;
+                width: 800px;
+            }
+            .image-container {
+                position: relative;
+                display: grid;
+                place-items: center;
+                width: 600px;
+                height: 600px;
+
+            }
+            .image {
+                border-radius: 8px;
+                margin: 50px;
+                max-width: 100%;
+                max-height: 100%;
+                min-width: 200px;
+                min-height: 200px;
+                height: auto;
+            }
+            h1 {
+                font-size: 100px;
+                margin-right: 30px;
+                font-weight: bold;
+                color: rgb(249, 244, 229);
+                
+            }
+            .icon {
+                height: 100px;
+            }
+            .reload-image {
+                height: 100px;
+                width: 700px;
+                margin: 50px;
+                background-color: rgb(249, 244, 229);
+                color: #de856c;
+                border-color: rgb(246, 243, 235);
+                font-size: 40px;
+                font-weight: 900;
+                border-radius: 8px;
+            }
+        </style>
+    </head>
+    <body>
+        
+        <section class="container">
+            <div class="title-container">
+                <h1>Random Cats</h1>
+                <img src="https://static.vecteezy.com/system/resources/thumbnails/009/384/190/small_2x/cat-paw-clipart-design-illustration-free-png.png" alt="icon" class="icon">
+            </div>
+            <div class="image-container">
+                <img alt="Foto gatito aleatoria" class="image" id="img">
+            </div>
+            <button id="reloadImage" class="reload-image">New Cat</button>
+        </section>
+            
+        <script src="./main.js"></script>
+    </body>
+</html>
