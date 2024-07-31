@@ -26,8 +26,14 @@
                 position: relative;
                 display: grid;
                 grid-template-columns: repeat(4, 1fr);
-
-
+                margin: 10px;
+            }
+            
+            .favorite-image-container {
+                position: relative;
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                margin: 10px;
             }
             article {
                 position: relative;
@@ -46,8 +52,21 @@
                 position: absolute;
                 bottom: 5px;
                 right: 5px;
-                font-size: 30px;
+                font-size: 30px;   
                 background-color: rgba(223, 133, 73, 0.51);
+                border-color: #de856c;
+                border-radius: 10px;
+                cursor: pointer;
+             
+            }
+            .delete-button {
+                position: absolute;
+                bottom: 5px;
+                right: 5px;
+                font-size: 30px;
+                font-weight: 900;
+                color :rgb(246, 243, 235);
+                background-color: #de856cba;
                 border-color: #de856c;
                 border-radius: 10px;
                 cursor: pointer;
@@ -96,7 +115,32 @@
             <div class="favorite-image-container" id="favorite-image-container">
                 
             </div>
+
+            <div class="title-container">
+                <h1>Upload Cat's Pictures 📸</h1>
+            </div>
+            
+            <section id="uploadCat">
+                <div class="drop-zone-container">
+                    <div id="drop-zone">
+                        <label for="" id="drop-zone-label">
+                            <p id="drop-zone-icon">
+                                +
+                            </p>
+                            <p id="drop-zone-text">
+                                Drag and drop the cat's picture here.
+                            </p>
+                            <img src="" alt="" id="preview-image">
+                            
+                        </label>
+                        <input type="file" id="add-image-input">
+                    </div>
+                </div>
+            </section>
+
         </section>
+
+        
             
         <script src="./main.js"></script>
     </body>
