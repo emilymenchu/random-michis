@@ -92,7 +92,91 @@
                 font-size: 40px;
                 font-weight: 900;
                 border-radius: 8px;
+                cursor: pointer;
             }
+            #uploadCat {
+                display: block;
+                clear: both;
+                margin: 0 auto;
+                width: 100%;
+                max-width: 400px;
+            }
+            .drop-zone-container {
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                margin: 30px;
+            }
+
+            #drop-zone {
+                width: 300px;
+                height: 300px;
+                background-color: #e98a6f;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                border-radius: 8px;
+            }
+            #drop-zone-icon {
+                width: 40px;
+                height: 40px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 2rem;
+                font-weight: bold;
+                line-height: 1rem;
+                background-color: white;
+                color:#e98a6f;
+                border-radius: 50%;
+                margin: 0;
+            }
+            #drop-zone-label {
+                width: 100%;
+                height: 100%;
+                font-size: 1.2rem;
+                gap: 8px;
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+            }
+            #drop-zone-text {
+                padding: 0 30px;
+                margin: 0;
+                color: rgb(246, 243, 235);
+            }
+            #add-image-input{
+                opacity: 0;
+                height: 0;
+            }
+            #preview-image {
+                display: none;
+            }
+            #file-name {
+                display: none;
+                font-size: 1.6rem;
+                color: #f3925b;
+                text-align: center;
+                margin: 10px;
+            }
+            #upload-image-button {
+                margin-top: 12px;
+                padding: 12px;
+                height: 50px;
+                width: 200px;
+                background-color: #de856c;
+                color: rgb(246, 243, 235);
+                border-color: rgb(246, 243, 235);
+                font-size: 20px;
+                font-weight: 900;
+                border-radius: 8px; 
+                cursor: pointer;
+            }
+            
         </style>
     </head>
     <body>
@@ -102,24 +186,16 @@
                 <h1>Random Cats</h1>
                 <img src="https://static.vecteezy.com/system/resources/thumbnails/009/384/190/small_2x/cat-paw-clipart-design-illustration-free-png.png" alt="icon" class="icon">
             </div>
-            <span id="michiError"></span>
+            <span class="error" id="michiError"></span>
             <div class="image-container" id="image-container">
                 
             </div>
             <button id="reloadImage" class="reload-image">New Cats</button>
 
             <div class="title-container">
-                <h1>Favorite Cats 🤍</h1>
-            </div>
-            <span id="michiErrorFavorite"></span>
-            <div class="favorite-image-container" id="favorite-image-container">
-                
-            </div>
-
-            <div class="title-container">
                 <h1>Upload Cat's Pictures 📸</h1>
             </div>
-            
+            <span class="error" id="michiErrorUpload"></span>
             <section id="uploadCat">
                 <div class="drop-zone-container">
                     <div id="drop-zone">
@@ -130,13 +206,26 @@
                             <p id="drop-zone-text">
                                 Drag and drop the cat's picture here.
                             </p>
-                            <img src="" alt="" id="preview-image">
+                            <img src="" alt="" id="preview-image" class="image">
                             
                         </label>
                         <input type="file" id="add-image-input">
                     </div>
+                    <p id="file-name"></p>
+                    <button id="upload-image-button" class="secondary-button">
+                        Upload picture
+                    </button>
                 </div>
             </section>
+
+            <div class="title-container">
+                <h1>Favorite Cats 🤍</h1>
+            </div>
+            <span class="error" id="michiErrorFavorite"></span>
+            <div class="favorite-image-container" id="favorite-image-container">
+                
+            </div>
+
 
         </section>
 
