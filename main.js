@@ -28,7 +28,8 @@ async function fetchRandomCats(){
         let i = 0;
         
         if (response.status !== 200){
-            spanError.innerHTML = "Hubo un MichiError: " + response.status + data.message;
+            spanError.innerHTML = "⚠️ Hubo un MichiError: " + data.message;
+            spanError.style.display = 'block';
         }else {
             let images = `
             ${data.map(image => `
@@ -63,7 +64,8 @@ async function fetchFavoriteCats(){
         let i = 0;
         
         if (response.status !== 200) {
-            spanErrorFavorite.innerHTML = "Hubo un MichiError: " + response.status + data.message;
+            spanErrorFavorite.innerHTML = "⚠️ Hubo un MichiError: " + data.message;
+            spanErrorFavorite.style.display = 'block';
 
         } else {
             let images = `
@@ -95,9 +97,11 @@ async function saveFavouriteMichis(id){
             image_id: id
         })
     })
+    const data = await res.json;
 
     if (res.status !== 200){
-        spanError.innerHTML = "Hubo un MichiError: " + res.status;
+        spanError.innerHTML = "⚠️ Hubo un MichiError: " + data.message;
+        spanError.style.display = 'block';
     } else {
         fetchFavoriteCats();
     }
@@ -123,25 +127,34 @@ async function uploadMichiPicture(file){;
     var formData = new FormData();
     formData.append('file', file);
 
-    const res = await fetch(API_URL_UPLOAD, {
-        method: 'POST',
-        headers: {
-            'x-api-key': API_KEY
-        },
-        body: formData
-    });
+    try {
 
-    const data = await res.json();
-
-    if (res.status < 200 && res.status > 300){
-        spanErrorUpload.innerHTML = "Hubo un MichiError: " + res.status + " " + data.message;
-    } else {
-        console.log(data)
-        console.log('My cats picture was uploaded!');
-        saveFavouriteMichis(data.id);
-        fileName.innerHTML = `The picture was uploaded!`;
-        window.selectedFile = undefined;
-        resetDropZone();
+        const res = await fetch(API_URL_UPLOAD, {
+            method: 'POST',
+            headers: {
+                'x-api-key': API_KEY
+            },
+            body: formData
+        });
+        
+        const data = await res.json();
+        
+        
+        
+        if (res.status < 200 && res.status > 300){
+            spanErrorUpload.innerHTML = "⚠️ Hubo un MichiError: " + data.message;
+            spanErrorUpload.style.display = 'block';
+        } else {
+            console.log(data)
+            console.log('My cats picture was uploaded!');
+            saveFavouriteMichis(data.id);
+            fileName.innerHTML = `The picture was uploaded!`;
+            window.selectedFile = undefined;
+            resetDropZone();
+        }
+    } catch (error) {
+        spanErrorUpload.innerHTML = "⚠️ Hubo un MichiError: " + error;
+        spanErrorUpload.style.display = 'block';
     }
 }
 
