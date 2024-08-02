@@ -1,9 +1,3 @@
-const api = axios.create({
-    baseURL: 'https://api.thecatapi.com/v1'
-});
-
-api.defaults.headers.common['X-API-KEY'] = 'live_EmLM3MNG3CDNwYPrgXekPclnnI12Hap2i8i8ufe8ZNhe4Sd3ozZDREAP6x8UojUj';
-
 const API_URL_RANDOM = "https://api.thecatapi.com/v1/images/search?limit=12";
 const API_URL_FAVORITES = "https://api.thecatapi.com/v1/favourites";
 const API_URL_DELETE_FAVORITES = "https://api.thecatapi.com/v1/favourites/";
@@ -93,12 +87,19 @@ async function fetchFavoriteCats(){
 };
 
 async function saveFavouriteMichis(id){
+    const res = await fetch (API_URL_FAVORITES, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-API-KEY': API_KEY
+        },
+        body: JSON.stringify({
+            image_id: id
+        })
+    })
+    const data = await res.json;
 
-    const {data, status} = await api.post('/favourites', {
-        image_id: id
-    });
-
-    if (status !== 200){
+    if (res.status !== 200){
         spanError.innerHTML = "⚠️ Hubo un MichiError: " + data.message;
         spanError.style.display = 'block';
     } else {
@@ -107,28 +108,19 @@ async function saveFavouriteMichis(id){
 }
 
 async function deleteFavouriteMichis(id){
-    try{
-        api.delete(`/favourites/${id}`)
-        fetchFavoriteCats();
-    } catch (error) {
-            switch (error) {
-                case error.response :
-                    spanErrorFavorite.innerHTML = "⚠️ Hubo un MichiError: " + error.response.data;
-                    spanErrorFavorite.style.display = 'block';
-                    console.log(error.toJSON());
-                    break;
-                case error.request :
-                    spanErrorFavorite.innerHTML = "⚠️ Hubo un MichiError: " + error.request.data;
-                    spanErrorFavorite.style.display = 'block';
-                    console.log(error.toJSON());
-                    break;
-                default :
-                    spanErrorFavorite.innerHTML = "⚠️ Hubo un MichiError: " + error.message;
-                    spanErrorFavorite.style.display = 'block';
-                    console.log(error.toJSON());
-                    break;
-            }
+    const urlDelete = API_URL_DELETE_FAVORITES + id;
+    const res = await fetch (urlDelete, {
+        method: 'DELETE',
+        headers: {
+            'X-API-KEY': API_KEY,
         }
+    });
+
+    if (res.status !== 200){
+        spanErrorFavorite.innerHTML = "Hubo un MichiError: " + res.status;
+    } else {
+        fetchFavoriteCats();
+    }
 }
 
 async function uploadMichiPicture(file){;
@@ -146,6 +138,7 @@ async function uploadMichiPicture(file){;
         });
         
         const data = await res.json();
+        
         
         
         if (res.status < 200 && res.status > 300){
@@ -191,7 +184,8 @@ document.getElementById('upload-image-button').addEventListener('click', () => {
         uploadMichiPicture(window.selectedFile);
     } else {
         fileName.innerHTML = 'No file has been selected';
-        fileName.style.display = 'block';
+        fileName.style.color = 'crimson';
+        fileName.style.display = 'block'
     }
 });
 
